@@ -1,0 +1,28 @@
+result = 0
+def calculator():
+    
+    # get the choice of operation from the user
+    operation = input("Choose an Operation (+, -, *, /):")
+    
+    # get the operands from the user
+    num_1 = float(input("1st Operand:"))
+    num_2 = float(input("2nd Operand:"))
+
+    # for the given operation execute the valid result 
+    if operation == "+":
+        result = num_1 + num_2
+    elif operation == "-":
+        result = num_1 - num_2
+    elif operation == "*":
+        result = num_1 * num_2
+    elif operation == "/":
+        if num_2 != 0:
+            result = round(num_1 / num_2, 2)
+        else:
+            return "Error: Division by 0 not allowed!"
+
+    # return the function of the program
+    return f"{num_1} {operation} {num_2} = {result}"
+
+# print the result
+print(calculator())

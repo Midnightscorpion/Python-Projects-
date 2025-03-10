@@ -1,13 +1,15 @@
 # Temperature Conversion Program 
 
-unit = input("Temperature is in Celsius(C) or Fahrenheit(F)? ")
-temp = float(input("Enter the temperature: ")).upper
+unit = input("Temperature is in Celsius(C) or Fahrenheit(F)? ").upper
+temp = float(input("Enter the temperature: "))
 
 if unit == "F":
-    temp = round ((temp - 32) * 5 / 9, 1)
+    temp = round((temp - 32) * 5 / 9, 2)
     print(f"The temperature in Celsius is {temp}°C")
+
 elif unit == "C":
-    temp = round ((9 * temp) / 5 + 32, 1)
+    temp = round((9 * temp) / 5 + 32, 2)
     print(f"The temperature in Fahrenheit is {temp}°F")
+
 else:
     print(f"{unit} is an invalid unit of measurement")

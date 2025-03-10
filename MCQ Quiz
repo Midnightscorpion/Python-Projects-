@@ -25,7 +25,7 @@ options = (("A. Buyers' willingness to pay",
            ("A. Total revenue",
             "B. Market share",
             "C. Profit (economic profit)", 
-            "D.Total cost."))
+            "D. Total cost."))
 
 answers = ("B", "B", "C", "B", "C")
 guesses = []

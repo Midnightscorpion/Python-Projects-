@@ -1,0 +1,69 @@
+# Python quiz game
+
+questions = ("According to the sources, the supply curve reflects: ",
+             "If a decrease in the price of good X leads to an increase in the demand for good Y, then X and Y are: ",
+             "Price elasticity of demand measures: ",
+             "The law of diminishing returns states that as more of a variable input is added to a fixed input: ",
+             "In perfect competition, firms aim to maximize: ")
+
+options = (("A. Buyers' willingness to pay", 
+            "B. Sellers' costs of production", 
+            "C. The quantity of a good consumers desire", 
+            "D. The relationship between income and demand"),
+           ("A. Substitute goods", 
+            "B. Complementary goods", 
+            "C. Normal goods", 
+            "D. Inferior goods."),
+           ("A. The responsiveness of quantity supplied to a change in price",
+            "B. The responsiveness of quantity demanded to a change in income",
+            "C. The responsiveness of quantity demanded to a change in price", 
+            "D. The responsiveness of price to a change in quantity demanded."),
+           ("A. Total output will eventually decrease", 
+            "B. Marginal product of the variable input will eventually decrease", 
+            "C. Average product will always increase",
+            "D. Costs of production will always decrease."),
+           ("A. Total revenue",
+            "B. Market share",
+            "C. Profit (economic profit)", 
+            "D.Total cost."))
+
+answers = ("B", "B", "C", "B", "C")
+guesses = []
+score = 0
+question_num = 0
+
+for question in questions: 
+    print(" - - - - - - - - - - - - - ")
+    print("         QUESTIONS         ")
+    print(" - - - - - - - - - - - - - ")
+    print(question)
+    
+    for option in options[question_num]:
+        print(option)
+        
+    guess = input("Enter (A, B, C, D): ").upper()
+    guesses.append(guess)
+    if guess == answers[question_num]:
+        score += 1
+        print("CORRECT!")
+    else:
+        print("INCORRECT!")
+        print(f"--> {answers [question_num]} is the correct answer")
+    question_num += 1
+
+print(" - - - - - - - - - - - - - ")
+print("          RESULTS          ")
+print(" - - - - - - - - - - - - - ")
+
+print("answers: ", end="'")
+for answer in answers: 
+    print(answer, end=" ")
+print()
+
+print("guesses: ", end="'")
+for guess in guesses: 
+    print(guess, end=" ")
+print()
+
+score = int(score / len(questions) * 100)
+print(f"Your score is {score}%")

@@ -1,0 +1,103 @@
+import numpy as np
+
+# Instructions
+print("Instructions: Make four arrays of any length\n",
+      "They can be 1D (ex: 1, 2, 3) or 2D arrays (ex: 1, 2, 3; 4, 5, 6)\n",
+      "Then choose two arrays [A / B / C / D]\n",
+      "Then choose how you want to broadcast it [+, -, *, /]:\n",
+      "Note: make sure none of your arrays contain any letters\n",
+      "and your dimensions are separated by a semicolon.")
+print(" - - - - - - - - - - - - - -  ")
+
+# Function to create arrays
+def create_array(arr):
+    if ';' in arr:
+        # Splitting dimension by semicolon and rows by comma
+        rows = arr.split(';')
+        array = []
+        for row in rows:
+            cr = [int(x) for x in row.split(',')]
+            array.append(cr)  # Append each row regardless of length
+        return np.array(array, dtype=object)  # Use dtype=object to allow variable-length rows
+    else:
+        return np.array([int(x) for x in arr.split(',')])
+
+# Input arrays of your choice
+a = create_array(input("Enter array A: "))
+b = create_array(input("Enter array B: "))
+c = create_array(input("Enter array C: "))
+d = create_array(input("Enter array D: "))
+
+print(" - - - - - - - - - - - - - -  ")
+print("          Well Done!          ")
+print("     Now let's BROADCAST!!!    ")
+print(" - - - - - - - - - - - - - -  ")
+
+# Loop for broadcasting
+while True:
+    print("Choose two arrays to broadcast (A, B, C, D) or press 'q' to quit:")
+    opt1 = input("Enter [A / B / C / D]: ").strip().upper()
+    if opt1 == 'Q' or opt1 == "q":  # q to quit
+        break
+    #  Input for operator of users choice
+    operator = input("Enter [+, -, *, /]: ").strip()
+    
+    opt2 = input("Enter [A / B / C / D]: ").strip().upper()
+    if opt2 == "Q" or opt2 == "q":  # q to quit
+        break
+
+    # Checking to see if the inputs are correct or not
+    if opt1 not in ["A", "B", "C", "D"] or opt2 not in ["A", "B", "C", "D"]:
+        print("Invalid choice. Choose from A, B, C or D!")
+        continue
+
+    if opt1 == "A":
+        c1 = a
+    elif opt1 == "B":
+        c1 = b
+    elif opt1 == "C":
+        c1 = c
+    elif opt1 == "D":
+        c1 = d
+
+    if opt2 == "A":
+        c2 = a
+    elif opt2 == "B":
+        c2 = b
+    elif opt2 == "C":
+        c2 = c
+    elif opt2 == "D":
+        c2 = d
+    
+    # Check if arrays are compatible for broadcasting
+    def compatibility(x, y):
+        # Check if the shapes of the chosen arrays can be broadcasted
+        try:
+            np.broadcast_arrays(x, y)  # This will raise an error if they cannot be broadcasted
+            print(" - - - - - - - - - - - - - -  ")
+            print(f"Result of Broadcasting:\n {c1} {operator} {c2} = {result}")    
+            print(" - - - - - - - - - - - - - -  ")
+            return True
+        except:
+            print(" - - - - - - - - - - - - - -  ")
+            print("These two arrays are NOT compatible for broadcasting. For broadcasting,\n",
+                  "the two arrays are compatible in a dimension if they have the same size\n",
+                  "in the dimension or if one of the arrays has size 1 in that dimension")
+            print(" - - - - - - - - - - - - - -  ")
+            return False
+            
+    # Using the compatibility function to broadcast
+    if compatibility(c1, c2):
+        # Attempt to perform broadcasting
+        if operator == '+':
+            result = c1 + c2
+        elif operator == '-':
+            result = c1 - c2
+        elif operator == '*':
+            result = c1 * c2
+        elif operator == '/':
+            result = c1 / c2
+        else:
+            print("Invalid operator. Please choose from +, -, *, or /.")
+            print(" - - - - - - - - - - - - - -  ")
+            continue
